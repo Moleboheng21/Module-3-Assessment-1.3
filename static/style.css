@@ -11,7 +11,10 @@ body{
 }
 
 .body-home{
-    background-image: url('images/background-01-port.png');
+    
+    background-image: url("/static/images/background-01-port.png");
+    background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -19,8 +22,7 @@ body{
 }
 
 .body-meals{
-    background-image: url('images/background-02-port.png');
-    background-position: center;
+   background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -93,11 +95,11 @@ input[type-checkbox]:checked + label:before{
 .home-menu-item{
     text-decoration: none;
     text-transform: uppercase;
-    color: white;
+    color: rgb(81, 67, 67);
     font-size: 25px;
     font-weight: bold;
     text-align: center;
-    border: 5px solid white;
+    border: 5px solid rgb(255, 254, 254);
     display: block;
     margin: auto;
     margin-bottom: 10px;
@@ -194,3 +196,33 @@ input[type-checkbox]:checked + label:before{
     }
     
 }
+.button-container{
+    background-color: #4d4d4d;
+    width: 50px;
+    height: 50px;
+}
+
+/* CSS styles for the navbar */
+ul.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+    overflow: hidden;
+  }
+  
+  ul.navbar li {
+    float: left;
+  }
+  
+  ul.navbar li a {
+    display: block;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  ul.navbar li a:hover {
+    background-color: #beb9b9;
+  }

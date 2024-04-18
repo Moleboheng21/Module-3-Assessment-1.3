@@ -6,6 +6,8 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/customer"
 mongo = PyMongo(app)
 db = mongo.db
 
+
+# Signup
 @app.route("/signup", methods=["POST", "GET"])
 def signup():
     if request.method == "POST":
@@ -18,59 +20,35 @@ def signup():
         # Adding user to the database
         user = {"name": name, "surname": surname, "email": email, "password": password}
         db.user.insert_one(user)
-        
-   
         return redirect(url_for('login'))
     
-    return render_template('sig\nup.html')
+    return render_template('signup.html')
 
 
-
+# Login
 @app.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
 
-        
         # Check if the user exists in the database
         user = db.user.find_one({"email": email, "password": password})
         if user:
-            # User exists, perform login logic here
-            return render_template('login.html')
-        else:
-            # User does not exist or invalid credentials
-            return render_template('login.html', error="Invalid email or password")
-    
-    
-    if request.method == "GET": return redirect(url_for('index'))
-    
+            return redirect(url_for('home'))
+      
     return render_template('login.html')
  
 
 
-@app.route("/")
-def home():
-    return render_template('index.html')
+@app.route("/", methods=['GET', 'POST'])
+def admin():
+  return render_template('admin.html')
 
-@app.route('/index', methods=['POST'])
-def index():
-    # Handle the form submission here
-    # You can access the form data using request.form
-    # Process the data and return a response
 
-    # Example: Get the form data
-    name = request.form.get('name')
-    email = request.form.get('email')
 
-    # Example: Save the data to MongoDB
-    data = {'name': name, 'email': email}
-    mongo.db.collection.insert_one(data)
-
-    # Example: Redirect to a success page
-    return redirect(url_for('success'))
-
-@app.route('/meals')
+# Other routes
+@app.route('/meals', methods=['POST'])
 def meals():
     # Handle Meals page logic here
     # You can return a rendered template or a response
@@ -103,4 +81,4 @@ def success():
     return render_template('success.html')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

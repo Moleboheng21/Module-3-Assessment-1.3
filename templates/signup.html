@@ -2,17 +2,16 @@
 <html>
 <head>
   <title>Signup Page</title>
-  <link rel="stylesheet"href="/fontawesome/css/signup.css">
+  <link rel="stylesheet" href="static/signup.css">
 </head>
 <body>
   <div class="container">
     <h1>Signup</h1>
-    <form action="/" method="POST">
+    <form action="/signup" method="POST">
       <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
       </div>
-
       <div class="form-group">
         <label for="surname">Surname:</label>
         <input type="text" id="surname" name="surname" required>
@@ -33,10 +32,11 @@
         <input type="password" id="confirm-password" name="confirm-password" required>
       </div>
 
-      <div class="button-container">
+      <div class="button-container ">
         <button type="submit">Signup</button>
       </div>
     </form>
   </div>
+
 </body>
 </html>
