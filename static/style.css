@@ -1,16 +1,15 @@
-html{
-    height: 100%;
-}
 
+*{
 body{
     font-family: sans-serif;
     margin: 0;
     padding: 0;
-    height: 100%;
+  
     
 }
 
-.body-home{
+}
+#body-home{
     
     background-image: url("/static/images/background-01-port.png");
     background-size: cover;
@@ -19,13 +18,18 @@ body{
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    height: 820px;
+  
+   
 }
 
 .body-meals{
+    
    background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+ 
 }
 
 /*======= CUSTOM CHECKPOINTS ==========*/
@@ -76,7 +80,7 @@ input[type-checkbox]:checked + label:before{
 
 /*======= HOME PAGE ==========*/
 
-#home-logo-img{
+.logo{
     width: 50px;
     display: block;
     margin: auto;
@@ -95,7 +99,7 @@ input[type-checkbox]:checked + label:before{
 .home-menu-item{
     text-decoration: none;
     text-transform: uppercase;
-    color: rgb(81, 67, 67);
+    color: rgb(252, 250, 250);
     font-size: 25px;
     font-weight: bold;
     text-align: center;
@@ -226,3 +230,7 @@ ul.navbar {
   ul.navbar li a:hover {
     background-color: #beb9b9;
   }
+
+
+
+  

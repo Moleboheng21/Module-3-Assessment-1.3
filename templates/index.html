@@ -32,34 +32,55 @@
                 // Perform additional login logic if needed
             }
         });
+
+
+        function goToLandingPage1( ) {
+            // Replace the URL "/landing-page" with the actual URL or route of the landing page
+           window.location.href = "";
+           }
     </script>
 </head>
-<body class="body-home">
+<body>
     <nav>
         <ul class="navbar">
-            <li><a href="#Signup" onclick="handleSignup(event)">Signup</a></li>
-            <li><a href="#Login" onclick="handleLogin(event)">Login</a></li>
+            <li><a href="/signup">Signup</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="//update/<user_id>">/update/<user_id></a></li>
         </ul>
     </nav>
   
-     <div id="home">
-     <img src="/static/images/logo-img.png" alt="Image">
-        <img src="/static/images/logo-text 3.png" id="home-logo-text"> 
+
+
+    
+     <div id="body-home">
+ 
+      
 
         <div class="home-menu">
-            <a href="/meals.html" class="home-menu-item">
-                <p>Meals</p>
-            </a>
-
-            <a href="/drinks.html" class="home-menu-item">
-                <p>Drinks</p>
-            </a>
-
-            <a href="/dessert.html" class="home-menu-item">
-                <p>Desserts</p>
-    
+          
+        </div>
+        <div class"flex-container">
+       <img class="logo"  src="/static/images/logo-img.png "  alt="Image">
+            <img src="/static/images/logo-text 3.png" id="home-logo-text"> 
+        
+            <div class="home-menu">
+                <a href="/meals" class="home-menu-item">
+                    <p>Meals</p>
+                </a>
+        
+                <a href="/strawberry" onclick="goToLandingPage1('strawberry')" class="home-menu-item">
+                    <p>Drinks</p>
+                </a>
+        
+                <a href="/cookies" class="home-menu-item">
+                    <p>Desserts</p>
+        
+            </div>
+        
         </div>
     </div>
+
+
 
     
 </body>

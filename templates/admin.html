@@ -1,20 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Page</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='.css') }}">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Recipe Book</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the Signup and Login links
+            var signupLink = document.querySelector("a[href='#Signup']");
+            var loginLink = document.querySelector("a[href='#Login']");
+
+            // Add click event listeners
+            signupLink.addEventListener("click", handleSignup);
+            loginLink.addEventListener("click", handleLogin);
+
+            // Event handlers
+            function handleSignup(event) {
+                event.preventDefault();
+                // Handle signup event here
+                console.log("Signup clicked!");
+                // Perform additional signup logic if needed
+            }
+
+            function handleLogin(event) {
+                event.preventDefault();
+                // Handle login event here
+                console.log("Login clicked!");
+                // Perform additional login logic if needed
+            }
+        });
+    </script>
 </head>
 <body>
+    <nav>
+        <ul class="navbar">
+            <li><a href="/signup">Signup</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+  
+
+
+    
+     <div id="body-home">
  
+      
 
-  <nav>
-    <ul class="navbar">
-        <li><a href="#Signup">Signup</a></li>
-        <li><a href="#Login">Login</a></li>
-    </ul>
+        <div class="home-menu">
+          
+        </div>
+        <div class"flex-container">
+          <center>   <center>  <img class="logo"  src="/static/images/logo-img.png "  alt="Image">
+            <img src="/static/images/logo-text 3.png" id="home-logo-text"> 
+        
+            <div class="home-menu">
+                <a href="" class="home-menu-item">
+                    <p>Meals</p>
+                </a>
+        
+                <a href="" class="home-menu-item">
+                    <p>Drinks</p>
+                </a>
+        
+                <a href="" class="home-menu-item">
+                    <p>Desserts</p>
+        
+            </div>
+        
+        </div>
+    </div>
 
-<div class="home">
+
+
+    
 </body>
 </html>

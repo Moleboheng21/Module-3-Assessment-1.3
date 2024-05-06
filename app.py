@@ -1,3 +1,4 @@
+from bson import ObjectId
 from flask import Flask, request, render_template, redirect, url_for
 from flask_pymongo import PyMongo
 
@@ -38,23 +39,27 @@ def login():
             return redirect(url_for('home'))
       
     return render_template('login.html')
+
  
 
 
 @app.route("/", methods=['GET', 'POST'])
-def admin():
+def index():
   return render_template('admin.html')
 
 
-
+@app.route("/home", methods=['GET', 'POST'])
+def home(): 
+  return render_template('index.html')
 # Other routes
-@app.route('/meals', methods=['POST'])
+@app.route('/meals')
 def meals():
     # Handle Meals page logic here
     # You can return a rendered template or a response
 
     # Example: Render a template
-    return render_template('meals.html')
+    return render_template('grilled_cheese.html')
+
 
 @app.route('/drinks')
 def drinks():
@@ -64,13 +69,22 @@ def drinks():
     # Example: Render a template
     return render_template('drinks.html')
 
-@app.route('/dessert')
-def dessert():
+@app.route('/strawberry')
+def strawberry():
+    # Handle Drinks page logic here
+    # You can return a rendered template or a response
+
+    # Example: Render a template
+    return render_template('strawberry.html')
+
+
+@app.route('/cookies')
+def cookies():
     # Handle Dessert page logic here
     # You can return a rendered template or a response
 
     # Example: Render a template
-    return render_template('dessert.html')
+    return render_template('cookies.html')
 
 @app.route('/success')
 def success():
