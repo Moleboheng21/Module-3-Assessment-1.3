@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>My Recipe Book | Meals</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="/static/style.css">
         <link rel="stylesheet" href="fontawesome/css/all.css">
     </head>
 
@@ -14,22 +14,31 @@
         
             </a>
             
-            <img src="images/logo-text.png">
+            <img src="/static/images/logo-text.png">
         </div>
         
         <div id="meals">
             
             <div class="meals-list">
                 
-                <a href="grilledcheese.html">
-                    <div class="meals-list-item">
-                        <h1>Grilled Cheese Sandwich<i class="fas fa-chevron-right"></i></h1>
-                        
-                        <p>Extra cheesy grilled cheese sandwich</p>
+               
                     </div>
                 </a>
             </div>
-            
+          
         </div>
+        <h2>Meals</h2>
+        <ul>
+            {% for meal in meals %}
+            <li>Title: {{ meal.title }}</li>
+            <li>Description: {{ meal.description }}</li>
+            <li>Ingredients: {{ meal.ingredients }}</li>
+            <li>Instructions: {{ meal.instructions }}</li>
+            {% endfor %}
+        </ul>
+        
+        <li><a href="#" onclick="goToLandingPage2('added')">Add Recipe</a></li>
+        
     </body>
+    <script src="/static/app.js"></script>
 </html>

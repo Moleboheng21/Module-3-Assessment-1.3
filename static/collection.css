@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+    background-image: url("/static/images/background-01-land.png");;
+    
+}
+
+h1 {
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+.submit{
+    margin-left: -500px;
+}
+.meals-list-item{
+    color: #f3bfbf;
+}
+.Recipes{
+    color: #f7f4f4;
+}
+.view{
+    color: #f3bfbf;
+}
+.delete{
+    color: #f3bfbf;
+}

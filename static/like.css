@@ -1,0 +1,89 @@
+.recipe-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-image: url("/static/images/background-02-land.png");;
+}
+
+.recipe-title {
+    text-align: center;
+}
+
+.recipe-content {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.recipe-image {
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
+}
+
+.recipe-description {
+    font-size: 16px;
+}
+
+.like-comment-section {
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}
+
+.like-section {
+    display: flex;
+    align-items: center;
+}
+
+.like-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.like-count {
+    font-weight: bold;
+}
+
+.comment-section {
+    margin-top: 20px;
+}
+
+.comment-list {
+    list-style: none;
+    padding: 0;
+}
+
+.comment-item {
+    margin-bottom: 10px;
+}
+
+.comment-author {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.comment-form {
+    margin-top: 10px;
+}
+
+.comment-input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.comment-submit {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.body{
+    background-image: url("/static/images/background-01-port.png");
+}

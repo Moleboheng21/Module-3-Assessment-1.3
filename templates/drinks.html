@@ -2,8 +2,9 @@
 <html>
     <head>
         <title>My Recipe Book | Drinks</title>
-        <link rel="stylesheet" href="static/style.css">
+        <link rel="stylesheet" href="/static/style.css">
         <link rel="stylesheet" href="fontawesome/css/all.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     </head>
 
     <body class="body-meals">
@@ -16,19 +17,34 @@
             <img src="static/images/logo-text.png">
         </div>
         
-        <div id="meals">
+               
+                
+                <h1></h1>
+                <div class="recipe-details-info">
+                   
+                
+                </div>
             
             <div class="meals-list">
                 
-                <a href="strawberry.html">
-                    <div class="meals-list-item">
-                        <h1>Strawberry Milkshake<i class="fas fa-chevron-right"></i></h1>
-                        
-                        <p>Creamy strawberry milkshake</p>
+               
                     </div>
                 </a>
             </div>
-            
+           
         </div>
+        <h2>Drinks</h2>
+        <ul>
+            {% for recipe in recipes %}
+            <li>{{ recipe.title }}</li>
+            <li>{{ recipe.description }}</li>
+            <li>{{ recipe.ingredients }}</li>
+            <li>{{ recipe.instructions }}</li>
+            {% endfor %}
+        </ul>
+
+        <li><a href="#" onclick="goToLandingPage1('add')">Add Recipe</a></li>
     </body>
+    <script src="/static/app.js"></script>
+
 </html>
