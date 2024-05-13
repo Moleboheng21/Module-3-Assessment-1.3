@@ -12,11 +12,7 @@
 <div class="recipe-list">
     <h2>Recipes</h2>
     <ul class="list-group">
-       
-        <li class="list-group-item">
-            <h4>{{ Stout-Braised Lamb Shanks }}</h4>
-            <p><strong>Ingredients:</strong> {{ 1 tablespoon vegetable oil,  lamb shanks, 1 onion chopped, 4 cloves garlic, chopped }}</p>
-            <p><strong>Instructions:</strong> {{  }}</p>
+      
             <form action="/delete/{{ recipe._id }}" method="POST">
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>

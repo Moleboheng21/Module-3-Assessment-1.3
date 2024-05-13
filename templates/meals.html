@@ -27,18 +27,21 @@
             </div>
           
         </div>
-        <h2>Meals</h2>
-        <ul>
-            {% for meal in meals %}
-            <li>Title: {{ meal.title }}</li>
-            <li>Description: {{ meal.description }}</li>
-            <li>Ingredients: {{ meal.ingredients }}</li>
-            <li>Instructions: {{ meal.instructions }}</li>
-            {% endfor %}
-        </ul>
-        
+<h2>Meals</h2>
+<ul>
+    {% for meal in meals %}
+    <li>Title: {{ meal.title }}</li>
+    <li>Description: {{ meal.description }}</li>
+    <li>Ingredients: {{ meal.ingredients }}</li>
+    <li>Instructions: {{ meal.instructions }}</li>
+    <form action="{{ url_for('delete_card', card_id=recipe._id) }}" method="post">
+        <button type="submit">Delete</button>
+    </form>
+    {% endfor %}
+</ul>
+
         <li><a href="#" onclick="goToLandingPage2('added')">Add Recipe</a></li>
-        
+        <li><a href="#" onclick="goToLandingPage3('added2')">Delete</a></li>
     </body>
     <script src="/static/app.js"></script>
 </html>

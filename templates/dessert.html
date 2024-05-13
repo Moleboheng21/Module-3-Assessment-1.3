@@ -19,22 +19,22 @@
         <div id="meals">
             
             <div class="meals-list">
-                
+                {{dessert}} 
              
             </a>
              
             </div>
             <h2>Dessert</h2>
             <ul>
-                {% for recipe in recipes %}
-                <li>{{ recipe.title }}</li>
-                <li>{{ recipe.description }}</li>
-                <li>{{ recipe.ingredients }}</li>
-                <li>{{ recipe.instructions }}</li>
+                {% dessert in dessert %}
+                <li>Title: {{ .dessert}}</li>
+                <li>Description: {{ dessert.description }}</li>
+                <li>Ingredients: {{dessert.ingredients }}</li>
+                <li>Instructions: {{ dessert.instructions }}</li>
                 {% endfor %}
             </ul>
         </div>
-        <li><a href="#" onclick="goToLandingPage1('add')">Add Recipe</a></li>
+        <li><a href="#" onclick="goToLandingPage3('added2')">Add Recipe</a></li>
     </body>
     <script src="/static/app.js"></script>
 </html>

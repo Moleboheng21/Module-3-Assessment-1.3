@@ -83,6 +83,7 @@ def add():
         db.recipe.insert_one(recipes)
         # Redirect to a different page after processing the form data
         return redirect(url_for("drinks"))
+    recipes = db.recipe.find() 
     
     # If the request method is GET or not a POST request
     # Render the add.html template for the user to view the form
@@ -108,23 +109,59 @@ def added():
         # add_recipe_to_favorites(recipe_name)
         Meals = {"title": title, "description": description, "ingredients": ingredients, "instructions": instructions}
         db.Meals.insert_one(Meals)
+        meals = db.Meals.find() 
         # Redirect to a different page after processing the form data
-        return redirect(url_for("meals"))
+        return render_template("meals.html", meal=meals)
     
     # If the request method is GET or not a POST request
     # Render the add.html template for the user to view the form
     return render_template("added.html")
 
 
+@app.route("/added2", methods=["POST", "GET"])
+def added2():
+    if request.method == "POST":
+        # Process the form data when the request method is POST
+        # Add the recipe to the user's favorites or perform any necessary operations
+        # based on the submitted data
+        
+        # Example: Access the form data
+        title = request.form.get("title")
+        description = request.form.get("description")
+        ingredients = request.form.get("ingredients")
+        instructions = request.form.get("instructions")
+        
+        # Process the recipe_name data as needed
+        
+        # Example: Add the recipe to the user's favorites in the database
+        # add_recipe_to_favorites(recipe_name)
+    Dessert = {"title": title, "description": description, "ingredients": ingredients, "instructions": instructions}
+    db.Dessert.insert_one(Dessert)
+    dessert = db.Dessert.find() 
+        # Redirect to a different page after processing the form data
+    return render_template("dessert.html", dessert=dessert)
+    
+    # If the request method is GET or not a POST request
+    # Render the add.html template for the user to view the form
+    return render_template("added2.html")
+
+
+
 @app.route('/drinks')
 def get_drinks():
     recipes = db.recipe.find()
-    return render_template('drinks.html', recipes=recipes)
+    return render_template('drinks.html', recipe=recipes)
 
 @app.route('/meals')
 def get_meals():
     meals = db.Meals.find()  # Assuming 'Meals' is the collection name in your MongoDB
-    return render_template('meals.html', meals=meals)
+    return render_template('meals.html', meal=meals)
+
+
+@app.route('/dessert')
+def get_dessert():
+   dessert = db.Dessert.find()  # Assuming 'Meals' is the collection name in your MongoDB
+   return render_template('dessert.html', dessert=dessert)
 
 
 @app.route('/drinks')
@@ -160,7 +197,10 @@ def success():
     # Example: Render a template
     return render_template('success.html')
 
-
+@app.route('/delete_meals', methods=['POST'])
+def delete_meals(card_id):
+    db.Meals.delete_one({'_id': ObjectId(card_id)})
+    return redirect(url_for('get'))
     
     
 

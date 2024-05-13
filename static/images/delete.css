@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url("/static/images/background-01-land.png");;
+}
+
+.navbar {
+    background-color: #333;
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+}
+
+.navbar li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.navbar li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#body-home {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+
+#home-logo-text {
+    margin-top: 10px;
+    width: 200px;
+}
+
+.home-menu {
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.home-menu-item {
+    margin: 0 10px;
+}
+
+.recipe-list {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.recipe-list h2 {
+    margin-bottom: 20px;
+}
+
+.list-group-item {
+    margin-bottom: 20px;
+}
+
+.list-group-item h4 {
+    margin-bottom: 5px;
+}
+
+.list-group-item p {
+    margin-bottom: 5px;
+}
+
+.btn-danger {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
