@@ -18,19 +18,21 @@
         
         <div id="meals">
             
-            <div class="meals-list">
-                {{dessert}} 
-             
+            <div class="meals-list">             
             </a>
              
             </div>
             <h2>Dessert</h2>
             <ul>
-                {% dessert in dessert %}
-                <li>Title: {{ .dessert}}</li>
+                {% for dessert in dessert %}
+                <li>Title: {{ dessert.title}}</li>
                 <li>Description: {{ dessert.description }}</li>
                 <li>Ingredients: {{dessert.ingredients }}</li>
                 <li>Instructions: {{ dessert.instructions }}</li>
+                <form action="delete_dessert" method="post">
+                    <input type="hidden" id="delete" name="delete" value={{dessert._id}}>
+                    <button type="submit">Delete</button>
+                </form>
                 {% endfor %}
             </ul>
         </div>

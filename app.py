@@ -82,12 +82,12 @@ def add():
         recipes = {"title": title, "description": description, "ingredients": ingredients, "instructions": instructions}
         db.recipe.insert_one(recipes)
         # Redirect to a different page after processing the form data
-        return redirect(url_for("drinks"))
+        return render_template("drinks.html", recipe=recipes )
     recipes = db.recipe.find() 
     
     # If the request method is GET or not a POST request
     # Render the add.html template for the user to view the form
-    return render_template("add.html")
+    return render_template("add.html" )
 
 
 @app.route("/added", methods=["POST", "GET"])
@@ -110,6 +110,7 @@ def added():
         Meals = {"title": title, "description": description, "ingredients": ingredients, "instructions": instructions}
         db.Meals.insert_one(Meals)
         meals = db.Meals.find() 
+        print(meals)
         # Redirect to a different page after processing the form data
         return render_template("meals.html", meal=meals)
     
@@ -117,9 +118,13 @@ def added():
     # Render the add.html template for the user to view the form
     return render_template("added.html")
 
-
 @app.route("/added2", methods=["POST", "GET"])
 def added2():
+    return render_template("added2.html")
+
+
+@app.route("/added22", methods=["POST", "GET"])
+def added22():
     if request.method == "POST":
         # Process the form data when the request method is POST
         # Add the recipe to the user's favorites or perform any necessary operations
@@ -158,10 +163,10 @@ def get_meals():
     return render_template('meals.html', meal=meals)
 
 
-@app.route('/dessert')
-def get_dessert():
-   dessert = db.Dessert.find()  # Assuming 'Meals' is the collection name in your MongoDB
-   return render_template('dessert.html', dessert=dessert)
+# @app.route('/dessert')
+# def get_dessert():
+#    dessert = db.Dessert.find()  # Assuming 'Meals' is the collection name in your MongoDB
+#    return render_template('dessert.html', dessert=dessert)
 
 
 @app.route('/drinks')
@@ -183,11 +188,12 @@ def strawberry():
 
 @app.route('/dessert')
 def dessert():
+    dessert = db.Dessert.find() 
     # Handle Dessert page logic here
     # You can return a rendered template or a response
 
     # Example: Render a template
-    return render_template('dessert.html')
+    return render_template('dessert.html', dessert=dessert)
 
 @app.route('/success')
 def success():
@@ -198,10 +204,20 @@ def success():
     return render_template('success.html')
 
 @app.route('/delete_meals', methods=['POST'])
-def delete_meals(card_id):
-    db.Meals.delete_one({'_id': ObjectId(card_id)})
-    return redirect(url_for('get'))
+def delete_meals():
+    if request.method == "POST":
+     delete_id = request.form.get("delete")
+     db.Meals.delete_one({'_id': ObjectId(delete_id)})
+     meals = db.Meals.find()
+    return render_template('meals.html', meal=meals)
     
+@app.route('/delete_dessert', methods=['POST'])
+def delete_dessert():
+    if request.method == "POST":
+     delete_id = request.form.get("delete")
+     db.Dessert.delete_one({'_id': ObjectId(delete_id)})
+     dessert = db.Dessert.find()
+    return render_template('dessert.html', dessert=dessert)
     
 
 if __name__ == '__main__':
