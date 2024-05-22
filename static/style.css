@@ -114,17 +114,18 @@ input[type-checkbox]:checked + label:before{
 
 #meals{
     padding-top: 50px;
-    background-image: url("/static/images/background-02-land.png");;
+    background-image: url("/static/images/background-02-port.png");;
 }
 
 /*=== MEALS PAGE MENU ====*/
 
 .meals-list a{
     text-decoration: none;
+    
 }
 
 .meals-list-item{
-    border: 5px solid #1a1a1a;
+    border: 5px solid #eae7e7;
     margin: 10px;
 }
 
@@ -149,7 +150,7 @@ input[type-checkbox]:checked + label:before{
     padding-left: 10px;
 }
 .body-meals{
-    background-image: url("/static/images/background-02-land.png");;
+    background-image: url("/static/images/background-02-port.png");;
 }
 
 /*======= RECIPE PAGE ==========*/
@@ -237,10 +238,183 @@ ul.navbar {
 
 
 
-  .try{
-
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        transition: 0.3s;
-        background-color: #2196f3;
-      
+  .add{
+    margin-left: 1280px;
+    margin-top: -20px;
+    color: #ffffff;
+    background-color: aliceblue;
   }
+
+  .add2{
+    margin-left: -1280px;
+    margin-top: -20px;
+    display: block;
+  
+
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+ 
+  
+  .post {
+    max-width: 1000px;
+    margin: 20px auto;
+    border: 1px solid #170606;
+    border-radius: 5px;
+    margin-left: 220px;
+    background-color: #fffcfc;
+  }
+  .post1 {
+    max-width: 1000px;
+    margin: 20px auto;
+    border: 1px solid #111010;
+    border-radius: 5px;
+    background-color: #fffcfc;
+    
+   
+  }
+  .post-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .post-header img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .username {
+    margin: 0;
+  }
+  
+  .post img {
+    width: 50%;
+    height: auto;
+    
+  }
+  .post_Img2 {
+    width: 50%;
+    height: auto;
+  }
+  
+  .post-footer {
+    padding: 20px;
+    margin-right: 50px;
+   
+  }
+  
+  .likes {
+    font-weight: bold;
+  }
+  
+  .caption {
+    margin-bottom: 10px;
+  }
+  
+  .caption .username {
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .comments {
+    margin-bottom: 10px;
+  }
+  
+  .comment {
+    margin-bottom: 5px;
+  }
+  
+  .comment .username {
+    font-weight: bold;
+  }
+  
+  .add-comment input {
+    width: 80%;
+    padding: 5px;
+    margin-right: 5px;
+  }
+  .dd-comment input {
+    width: 200px;
+    padding: 5px;
+    margin-right: 5px;
+  }
+  
+  .add-comment button {
+    padding: 5px 10px;
+    background-color: #3897f0;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .add-comment button:hover {
+    background-color: #357ae8;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("/static/images/background-02-port.png");;
+  }
+  
+  header {
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  
+  
+  .cta {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .cta button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  footer {
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: center;
+    font-size: 12px;
+    color: #808080;
+    width: 1560px;
+  }
+  

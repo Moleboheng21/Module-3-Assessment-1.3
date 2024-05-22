@@ -14,11 +14,129 @@
             </a>
             
             <img src="/static/images/logo-text.png">
+            <li class="add"><a href="#" onclick="goToLandingPage2('added')">Add Recipe</a></li>
         </div>
         
         <div id="meals">
             
-            <div class="meals-list">             
+            <div class="meals-list">    
+                <main>
+              
+                    <div class="meals-list">
+                    
+                        <a href="cookies.html">
+                            <div class="meals-list-item">
+                                <h1>Discovery feed<i class="fas fa-chevron-right"></i></h1>
+                                
+                             
+                            </div>
+                        </a>
+                  
+                </main>
+              
+              </body>
+              </html>
+               
+                    <div class="post">
+                      <div class="post-header">
+                       
+                        <h3 class="username">john_doe</h3>
+                      </div>
+                      <img src="/static/images/triffle.jpeg" alt="Post Image">
+                      <div class="post-footer">
+                        <div class="likes"></div>
+                        <div class="caption">
+                          <h4 class="username">john_doe</h4>
+                          <p class="text">Enjoying a beautiful day at the beach! ☀️🌊</p>
+                        </div>
+                        <div class="comments">
+                          <div class="comment">
+                            <strong class="username">jane_smith:</strong> Looks amazing!
+                          </div>
+                          <div class="comment">
+                            <strong class="username">mark_rodriguez:</strong> Wish I was there too!
+                          </div>
+                        </div>
+                        <div class="add-comment">
+                          <input type="text" placeholder="Add a comment...">
+                          <button type="submit" a href="#" onclick="goToLandingPage2('added')">Post</button>
+                        
+                      </div><br><br><br><br><br><br><br><br> </div>
+                    
+                    <div class="post1">
+                        <div class="post-header">
+                         
+                          <h3 class="username">Dani Snow</h3>
+                        </div>
+                        <img src="/static/images/fillet.webp" alt="Post Image">
+                        <div class="post-footer">
+                          <div class="likes"></div>
+                          <div class="caption">
+                            <h4 class="username">john_doe</h4>
+                            <p class="text">Enjoying a beautiful day at the beach! ☀️🌊</p>
+                          </div>
+                          <div class="comments">
+                            <div class="comment">
+                              <strong class="username">jane_smith:</strong> Looks amazing!
+                            </div>
+                            <div class="comment">
+                              <strong class="username">mark_rodriguez:</strong> Wish I was there too!
+                            </div>
+                          </div>
+                          <div class="add-comment">
+                            <input type="text" placeholder="Add a comment...">
+                            <button type="submit" a href="#" onclick="goToLandingPage2('added')">Post</button>
+                          </div>
+                        </div>
+                    </div>
+                  </body>
+                  </html>
+                 
+                </body>
+                </html>
+            </div>
+    
+            <center><ul></center>
+                <div class="post">
+                    <div class="post-header">
+                      
+        {% for meal in meal %}
+        <div><li>Title: {{ meal.title }}</li>
+       <li>Description: {{ meal.description }}</li>
+            <li>Ingredients: {{ meal.ingredients }}</li>
+                <li>Instructions: {{ meal.instructions }}</li></br>
+                <div class="add-comment">
+                    <input type="text" placeholder="Add a comment...">
+                         <button type="submit" a href="#" onclick="goToLandingPage2('added')">Post</button>
+                       
+                    <center> <form action="delete_meals" method="post">
+                        <center> <input type="hidden" id="delete" name="delete" value={{meal._id}}>
+                            <center><button type="submit">Delete</button></center>
+        </form>
+        </div></br>
+        {% endfor %}
+    </ul>
+    
+    <div>
+    </head>
+    <body>
+    
+      
+    </div>
+    
+    
+            
+        </body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="/static/app.js"></script>
+        
+    </html>
+    
+    
+    <footer>
+        <p>&copy; 2024 My Recipe Book. All rights reserved.</p>
+      </footer>
+             
             </a>
              
             </div>

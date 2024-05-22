@@ -11,10 +11,11 @@
         
         <div class="header">
             <a href="index.html" >
-                <i class="fas fa-arrow-circle-left"></i>
+             
             </a>
             
             <img src="static/images/logo-text.png">
+            <li class="add"><a href="#" onclick="goToLandingPage2('added')">Add Recipe</a></li>
         </div>
         
                
@@ -25,15 +26,90 @@
                 
                 </div>
             
-            <div class="meals-list">
-                {{drinks}}
+                <main>
+              
+                    <div class="meals-list">
+                    
+                        <a href="cookies.html">
+                            <div class="meals-list-item">
+                                <h1>Discovery feed<i ></i></h1>
+                                
+                             
+                            </div>
+                        </a>
+                  
+                </main>
+              
+              </body>
+              </html>
                
+                    <div class="post">
+                      <div class="post-header">
+                       
+                        <h3 class="username">john_doe</h3>
+                      </div>
+                      <img src="/static/images/triffle.jpeg" alt="Post Image">
+                      <div class="post-footer">
+                        <div class="likes"></div>
+                        <div class="caption">
+                          <h4 class="username">john_doe</h4>
+                          <p class="text">Enjoying a beautiful day at the beach! ☀️🌊</p>
+                        </div>
+                        <div class="comments">
+                          <div class="comment">
+                            <strong class="username">jane_smith:</strong> Looks amazing!
+                          </div>
+                          <div class="comment">
+                            <strong class="username">mark_rodriguez:</strong> Wish I was there too!
+                          </div>
+                        </div>
+                        <div class="add-comment">
+                          <input type="text" placeholder="Add a comment...">
+                          <button type="submit" a href="#" onclick="goToLandingPage2('added')">Post</button>
+                        
+                      </div><br><br><br><br><br><br><br><br> </div>
+                    
+                    <div class="post1">
+                        <div class="post-header">
+                         
+                          <h3 class="username">Dani Snow</h3>
+                        </div>
+                        <img src="/static/images/fillet.webp" alt="Post Image">
+                        <div class="post-footer">
+                          <div class="likes"></div>
+                          <div class="caption">
+                            <h4 class="username">john_doe</h4>
+                            <p class="text">Enjoying a beautiful day at the beach! ☀️🌊</p>
+                          </div>
+                          <div class="comments">
+                            <div class="comment">
+                              <strong class="username">jane_smith:</strong> Looks amazing!
+                            </div>
+                            <div class="comment">
+                              <strong class="username">mark_rodriguez:</strong> Wish I was there too!
+                            </div>
+                          </div>
+                          <div class="add-comment">
+                            <input type="text" placeholder="Add a comment...">
+                            <button type="submit" a href="#" onclick="goToLandingPage2('added')">Post</button>
+                          </div>
+                        </div>
+                    </div>
+                  </body>
+                  </html>
+                 
+                </body>
+                </html>
+            </div>
+               
+                     
+                
                     </div>
                 </a>
             </div>
            
-        </div>
-        <h2>Drinks</h2>
+        
+       
         <ul>
             {% for recipe in recipes %}
             <li>{{ recipe.title }}</li>
@@ -44,8 +120,13 @@
             {% endfor %}
         </ul>
 
-        <li><a href="#" onclick="goToLandingPage1('add')">Add Recipe</a></li>
+      
     </body>
     <script src="/static/app.js"></script>
 
 </html>
+
+<footer>
+    <p>&copy; 2024 My Recipe Book. All rights reserved.</p>
+  </footer>
+
