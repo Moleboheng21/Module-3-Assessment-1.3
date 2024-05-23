@@ -57,7 +57,7 @@ def meals():
     # Handle Meals page logic here
     # You can return a rendered template or a response
 
-    # Example: Render a template
+    #Exammple: Render a template
     return render_template('meals.html')
 
 
@@ -331,6 +331,19 @@ def edit1_meals():
             
     return render_template('add.html', meal=meals)
     
-
+@app.route('/comment', methods=['POST'])
+def comment():
+    if request.method == "POST":
+        comment = request.form["comment"]
+        id = request.form["id"]
+        comm = {"comment": comment, "item_id": id}
+        db.comment.insert_one(comm)
+        
+        meals = db.Meals.find()
+        comments = db.comment.find()
+        print(meals)
+            
+        return render_template('meals.html', meal=meals, comment=comments, id=id)
+    
 if __name__ == '__main__':
     app.run(debug=True)

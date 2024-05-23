@@ -284,6 +284,8 @@ ul.navbar {
     display: flex;
     align-items: center;
     padding: 10px;
+    color: #0c0a0a;
+    width: 50px;
   }
   
   .post-header img {

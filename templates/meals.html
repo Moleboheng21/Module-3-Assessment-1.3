@@ -33,11 +33,13 @@
             <div class="post">
                 <div class="post-header">
                   
+                  
     {% for meal in meal %}
-    <div><li>Title: {{ meal.title }}</li>
-   <li>Description: {{ meal.description }}</li>
-        <li>Ingredients: {{ meal.ingredients }}</li>
-            <li>Instructions: {{ meal.instructions }}</li></br>
+    
+    <div><li>Title: {{ meal.title }}</li><br>
+   <li>Description: {{ meal.description }}</li><br>
+        <li>Ingredients: {{ meal.ingredients }}</li><br>
+            <li>Instructions: {{ meal.instructions }}</li></br><br>
             {% if meal.image_url %}
                 <img src="{{ url_for('static', filename='images/' + item['image']) }}" alt="{{ item['Name'] }}">
                  <img src="{{breakfast.image}}" alt="xsehkweuhdc">
@@ -65,15 +67,23 @@
                  </form>
                  
                 {% endif %}
+              
 
-
-
-            <div class="add-comment2">
+            <form action="/comment" method="post"> 
+              <div class="add-comment2">
               <i class="fa-regular fa-comment fa-beat fa-lg"></i>
-                <input type="text" placeholder="Add a comment...">
-                     <button type="submit" a href="#" onclick="goToLandingPage2('added')">Post</button>
-                   
-                <center> <form action="/delete_meals" method="post">
+              <input type="text" name="comment" id="comment" placeholder="Add a comment...">
+              <input type="hidden" name="id" id="id" value={{meal._id}}>
+              <button type="submit">Post</button>
+            </form>
+            {% for comment in comment %}
+             {% if meal._id.value == comment.item_id.value %}
+            <div> {{comment.comment}} </div>
+           {% endif %}
+           {% endfor %}
+
+          
+              <center> <form action="/delete_meals" method="post">
                     <center> <input type="hidden" id="delete" name="delete" value={{meal._id}}>
                         <center><button type="submit">Deleted</button></center> </form>
                         <center> <form action="/edit_meals" method="post">
