@@ -1,157 +1,25 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>My Recipe Book | Meals | Cookies</title>
-        <link rel="stylesheet" href="static/style.css">
-        <link rel="stylesheet" href="fontawesome/css/all.css">
-    </head>
-
-    <body class="body-meals">
-        
-        <div class="header">
-            <a href="drinks.html">
-                <i class="fas fa-arrow-circle-left"></i>
-            </a>
-            
-            <img src="/static/images/logo-text.png">
-        </div>
-        
-        <div id="recipe">
-            <div class="recipe-details">
-                <img src="/static/images/cookies.png">
-                
-                <h1>Pecan, Raisin and Cinnamon Cookies</h1>
-                <div class="recipe-details-info">
-                    <P><b>Prep Time</b> : 30 Mins</P>
-                    <P style="float: right"><b>Yield</b> : 5</P>
-                </div>
-                
-                <div class="recipe-details-ingredients">
-                    <h2>Ingredients</h2>
-                    
-                    <input id="Check-01" type="checkbox">
-                    <label for="check-01">1 cup butter or margarine, softened</label>
-                    <br>
-                     <input id="Check-02" type="checkbox">
-                    <label for="check-02">1 1/2 cups firmly packed brown sugar</label>
-                    <br>
-                     <input id="Check-03" type="checkbox">
-                    <label for="check-03">3 eggs</label>
-                    <br>
-                     <input id="Check-04" type="checkbox">
-                    <label for="check-04">3 tablespoons strong coffee</label>
-                    <br>
-                     <input id="Check-05" type="checkbox">
-                    <label for="check-05">2 1/2 cups all-purpose flour</label>
-                    <br>
-                     <input id="Check-06" type="checkbox">
-                    <label for="check-06">1 teaspoon baking soda</label>
-                    <br>
-                     <input id="Check-07" type="checkbox">
-                    <label for="check-07">1 tablespoon ground cinnamon</label>
-                    <br>
-                    <input id="Check-08" type="checkbox">
-                    <label for="check-08">1 tablespoon ground allspice</label>
-                    <br>
-                    <input id="Check-09" type="checkbox">
-                    <label for="check-09">1 cup raisins</label>
-                    <br>
-                    <input id="Check-10" type="checkbox">
-                    <label for="check-10">1 cup chopped pecans</label>
-                    <br>
-                    
-                </div>
-                
-                <div class="recipe-details-steps">
-                    <h2>Steps</h2>
-                    
-                    <ol>
-                        <li>Cream butter in a large mixing bowl; gradually add sugar, beating until light and fluffy. Add eggs, one at a time, beating well after each addition. Add coffee, stirring well</li>
-                        <li>2.	Combine flour, soda, cinnamon, and allspice in a large mixing bowl. Stir in raisins and pecans to coat well; add to creamed mixture.</li>
-                        <li>Drop dough by heaping teaspoonfuls 2 inches apart onto greased cookie sheets. Bake at 350° for 8 minutes. Remove from cookie sheets, and cool on wire racks.</li>
-                       
-                    </ol>
-                </div>
-            </div>
-            
-        </div>
-    </body>
-</html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Recipe Book</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/delete.css">
 
 
-<div id="recipe">
-    <div class="recipe-details">
-        <img src="/static/images/triffle.jpeg">
+<div class="recipe-list">
+    <h2>Recipes</h2>
+    <ul class="list-group">
+      
+            <form action="/delete/{{ recipe._id }}" method="POST">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </li>
         
-        <h1>Mango and Raspberry Trifle </h1>
-        <div class="recipe-details-info">
-            <P><b>Prep Time</b> : 1 1/2 hrs</P>
-            <P style="float: right"><b>Yield</b> : 8</P>
-        </div>
-        
-        <div class="recipe-details-ingredients">
-            <h2>Ingredients for the jelly</h2>
-            
-            <input id="Check-01" type="checkbox">
-            <label for="check-01">170g Huletts Castor Sugar</label>
-            <br>
-             <input id="Check-02" type="checkbox">
-            <label for="check-02">250ml warm water</label>
-            <br>
-             <input id="Check-03" type="checkbox">
-            <label for="check-03">250g frozen raspberries, blended until smooth</label>
-            <br>
-             <input id="Check-04" type="checkbox">
-            <label for="check-04">13g powdered gelatine</label>
-            <br>
-             <input id="Check-05" type="checkbox">
-            <label for="check-05">**Optional: or 2 x boxes shop bought raspberry jelly made to pack instructions is also perfect here</label>
-            <br>
-            <h2>Ingredients for the white chocolate ganache:
-            </h2>
-             <input id="Check-07" type="checkbox">
-            <label for="check-07">2 cups white chocolate chips</label>
-            <br>
-            <input id="Check-08" type="checkbox">
-            <label for="check-08">3 cups cream</label>
-            <br>
-            <h2>For the Italian Meringue:
-            </h2>
-            <input id="Check-09" type="checkbox">
-            <label for="check-09">4 egg whites</label>
-            <br>
-            <input id="Check-09" type="checkbox">
-            <label for="check-09">400g Huletts Castor Sugar/Huletts Icing Sugar</label>
-            <br>
-            <input id="Check-09" type="checkbox">
-            <label for="check-09">250g fresh or frozen mango chunks</label>
-            <br>
-            <input id="Check-09" type="checkbox">
-            <label for="check-09">600g plain vanilla sponge cake, chopped into squares</label>
-            <br>
-            <input id="Check-09" type="checkbox">
-            <label for="check-09">***Optional: seasonal berries and gold leaf to garnish</label>
-            <br>
-        </div>
-        
-        <div class="recipe-details-steps">
-            <h2>Steps</h2>
-            
-            <ol>
-                <li>Make the Jelly as per on pack instructions OR get the castor sugar, water and bended raspberry into a pot on the stove top and heat through at a medium heat, stirring until the sugar has dissolved.</li>
-                <li>Remove from the heat and pour through a sieve to strain. Stir in the powdered gelatine, making sure it has dissolved properly. Pour into a bowl and set in the fridge for at least 3 hours.</li>
-                <li>Drop dough by heaping teaspoonfuls 2 inches apart onto greased cookie sheets. Bake at 350° for 8 minutes. Remove from cookie sheets, and cool on wire racks.</li>
-                <li>Stir together the white chocolate chips and cream in a medium, microwave-safe bowl. Microwave on high for 1 minute. Remove from the microwave and let sit for 1 minute.</li>
-                <li>Drop dough by heaping teaspoonfuls 2 inches apart onto greased cookie sheets. Bake at 350° for 8 minutes. Remove from cookie sheets, and cool on wire racks.</li>
-                <li>Whisk until smooth. If needed, microwave again in 15 second increments, whisking in between until the white chocolate has melted completely. Cover loosely and place in the fridge to cool, at least 30 - 35 minutes. (Mixture does not need to be completely chilled, just cool to the touch.)</li>
-                <li>Mix the egg whites and castor sugar or icing sugar in a small pot and heat lightly over a double boiler on the stove, whisking throughout, until the sugar has totally dissolved. Then beat on high with a handheld beater for 10 to 15 minutes until the meringue is glossy and stiff.</li>
-                <li>Layer the ingredients in a glass trifle dish or individual glasses in the following order starting from the bottom: Raspberries, jelly, sponge cake, white chocolate ganache, mango, raspberries, jelly, sponge cake, white chocolate ganache.</li>
-                <li>Top the trifle with generous spoonful’s of marshmallowy Italian meringue. Garnish with seasonal berries and gold leaf or gold dust.</li>
-                <li>Optional: Blowtorch the Italian meringue as an additional finishing touch.</li>
-            </ol>
-        </div>
-    </div>
-    
+    </ul>
 </div>
 </body>
 </html>
+

@@ -114,7 +114,7 @@ input[type-checkbox]:checked + label:before{
 
 #meals{
     padding-top: 50px;
-    background-image: url("/static/images/background-02-port.png");;
+    background-image: url("/static/images/vegetables.jpeg");;
 }
 
 /*=== MEALS PAGE MENU ====*/
@@ -127,6 +127,7 @@ input[type-checkbox]:checked + label:before{
 .meals-list-item{
     border: 5px solid #eae7e7;
     margin: 10px;
+    margin-top: 50px;
 }
 
 .meals-list-item h1{
@@ -140,6 +141,7 @@ input[type-checkbox]:checked + label:before{
     float: right;
     color: #1a1a1a;
     padding-right: 10px;
+   
 }
 
 .meals-list-item p{
@@ -150,7 +152,7 @@ input[type-checkbox]:checked + label:before{
     padding-left: 10px;
 }
 .body-meals{
-    background-image: url("/static/images/background-02-port.png");;
+     background-image: url("/static/images/vegetables.jpeg");;
 }
 
 /*======= RECIPE PAGE ==========*/
@@ -282,10 +284,10 @@ ul.navbar {
   }
   .post-header {
     display: flex;
-    align-items: center;
+    background-color: #fffcfc;
     padding: 10px;
     color: #0c0a0a;
-    width: 50px;
+    width: -50px;
   }
   
   .post-header img {
@@ -419,4 +421,16 @@ ul.navbar {
     color: #808080;
     width: 1560px;
   }
+  .edit{
+    width: 80px;
+  }
+  .edit2{
+    margin-left: 260px;
+    margin-top: -30px;
+  }
+  .edit3{
+    margin-left: 40px;
+    margin-top: -30px;
+  }
+ 
   

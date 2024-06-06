@@ -221,67 +221,37 @@ def delete_drinks():
     recipes = db.Dessert.find()
     return render_template('drinks.html',drinks=recipes )
 
-@app.route('/edit_meals', methods=['POST'])
-def edit_meals():
-    if request.method == "POST":
-        id = request.form.get("edit")
-        return render_template('editmeal.html', id=id)
+
 
 @app.route('/edit2', methods=['POST'])
 def edit_meals2():
     if request.method == "POST":
      id = request.form.get("id")
      title = request.form.get("title")
-     ingredients = request.form.get("ingredients")
-     instructions = request.form.get("instructions")
+    description = request.form.get("description")
+    ingredients = request.form.get("ingredients")
+    instructions = request.form.get("instructions")
      
-     db.Meals.update_one( { "_id":  ObjectId(id)}, { '$set': { "title": title, "ingredients":ingredients, "instructions":instructions} } ) 
-     meals = db.Meals.find()
+    db.Meals.update_one( { "_id":  ObjectId(id)}, { '$set': { "title": title, "ingredients":ingredients,"description":description, "instructions":instructions} } ) 
+    meals = db.Meals.find()
      
-     return render_template('meals.html', meal=meals)
+    return render_template('meals.html', meal=meals)
 
-# Dummy data for meals and comments
-meals = [
-    {
-        "_id": 1,
-        "title": "Spaghetti",
-        "description": "",
-        "ingredients": [""],
-        "instructions": "",
-        "comments": [
-            {"author": "Jane", "text": "Delicious recipe!"},
-            {"author": "John", "text": "I'm going to try this tonight."},
-        ]
-    }
-]
 
-@app.route('/add_comment/<int:meal_id>', methods=['POST'])
-def add_comment(meal_id):
-    data = request.json
-    author = data.get('author')
-    text = data.get('text')
-    if author and text:
-        for meal in meals:
-            if meal['_id'] == meal_id:
-                meal['comments'].append({"author": author, "text": text})
-                return jsonify({"message": "Comment added successfully"}), 200
-        return jsonify({"error": "Meal not found"}), 404
-    else:
-        return jsonify({"error": "Author and text are required fields"}), 400
+
 
 @app.route('/edit_comment/<int:meal_id>/<int:comment_id>', methods=['PUT'])
 def edit_comment(meal_id, comment_id):
-    data = request.json
+    data = request.get_json()
     text = data.get('text')
     if text:
         for meal in meals:
             if meal['_id'] == meal_id:
-                comments = meal['comments']
-                if comment_id < len(comments):
-                    comments[comment_id]['text'] = text
-                    return jsonify({"message": "Comment edited successfully"}), 200
-                else:
-                    return jsonify({"error": "Comment not found"}), 404
+                for comment in meal['comments']:
+                    if comment['_id'] == comment_id:
+                        comment['text'] = text
+                        return jsonify({"message": "Comment edited successfully"}), 200
+                return jsonify({"error": "Comment not found"}), 404
         return jsonify({"error": "Meal not found"}), 404
     else:
         return jsonify({"error": "Text is required"}), 400
@@ -344,6 +314,16 @@ def comment():
         print(meals)
             
         return render_template('meals.html', meal=meals, comment=comments, id=id)
+    
+
+@app.route('/delete_comment', methods=['POST'])
+def delete_comment():
+    if request.method == "POST":
+     delete_id = request.form.get("delete")
+     db.comment.delete_one({'_id': ObjectId(delete_id)})
+     comments= db.comment.find()
+    return render_template('meals.html', comment=comments)
+  
     
 if __name__ == '__main__':
     app.run(debug=True)
