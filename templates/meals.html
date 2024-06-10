@@ -36,35 +36,14 @@
                   
     {% for meal in meal %}
     
-    <div><li>Title: {{ meal.title }}</li><br>
+    <div>
+      
+      <li>Title: {{ meal.title }}</li><br>
    <li>Description: {{ meal.description }}</li><br>
         <li>Ingredients: {{ meal.ingredients }}</li><br>
             <li>Instructions: {{ meal.instructions }}</li></br><br>
             {% if meal.image_url %}
-                <img src="{{ url_for('static', filename='images/' + item['image']) }}" alt="{{ item['Name'] }}">
-                 <img src="{{breakfast.image}}" alt="xsehkweuhdc">
-                 <h2>Add Comment</h2>
-                 <form id="addCommentForm">
-                     <input type="text" id="author" placeholder="Your Name">
-                     <textarea id="commentText" placeholder="Your Comment"></textarea>
-                     <button type="button" onclick="addComment()">Add Comment</button>
-                 </form>
              
-                 <!-- Form to edit a comment -->
-                 <h2>Edit Comment</h2>
-                 <form id="editCommentForm">
-                     <input type="hidden" id="editCommentId">
-                     <textarea id="editedCommentText" placeholder="Edited Comment"></textarea>
-                     <button type="button" onclick="editComment()">Save Changes</button>
-                 </form>
-             
-                 <!-- Form to reply to a comment -->
-                 <h2>Reply to Comment</h2>
-                 <form id="replyCommentForm">
-                     <input type="text" id="replyAuthor" placeholder="Your Name">
-                     <textarea id="replyText" placeholder="Your Reply"></textarea>
-                     <button type="button" onclick="replyComment()">Post Reply</button>
-                 </form>
                  
                 {% endif %}
               
@@ -76,6 +55,17 @@
               <input type="hidden" name="id" id="id" value={{meal._id}}>
               <button type="submit">Post</button>
             </form>
+            <form action="/edit_com" method="post"> 
+              <div class="edit2">
+              <input type="hidden" name="id" id="id" value={{meal._id}}>
+              <button type="submit">edit</button>
+            </form>
+            <form action="/delete_meals" method="post"> 
+              <div class="et3">
+              <input type="hidden" name="id" id="id" value={{meal._id}}>
+              <button type="submit">delete</button>
+            </form>
+            
             {% for comment in comment %}
              {% if meal._id.value == comment.item_id.value %}
             <div> {{comment.comment}} </div>
@@ -86,6 +76,7 @@
               <center> <form action="/delete_meals" method="post">
                     <center> <input type="hidden" id="delete" name="delete" value={{meal._id}}>
                         <center><button type="submit">Deleted</button></center> </form>
+                        
                         <center> <form action="/edit_meals" method="post">
                           <center> <input type="hidden" id="edit" name="edit" value={{meal._id}}>
                               <center><button type="submit">Edit</button></center>

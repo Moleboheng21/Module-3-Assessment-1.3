@@ -345,5 +345,22 @@ def comment():
             
         return render_template('meals.html', meal=meals, comment=comments, id=id)
     
+    @app.route('/delete_comment', methods=['POST'])
+    def delete_comment():
+     if request.method == "POST":
+      delete_id = request.form.get("delete")
+     db.comment.delete_one({'_id': ObjectId(delete_id)})
+     delete_comments= db.comment.find()
+    return render_template('meals.html', delete_comment=comments)
+
+
+@app.route('/edit_com', methods=['POST'])
+def edit_com():
+    if request.method == "POST":
+        id = request.form.get("edit")
+        return render_template('edit_com.html', id=id)
+
+
+  
 if __name__ == '__main__':
     app.run(debug=True)
