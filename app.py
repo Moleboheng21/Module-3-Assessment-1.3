@@ -40,83 +40,54 @@ def login():
       
     return render_template('login.html')
 
- 
-
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-  return render_template('admin.html')
+    return render_template('admin.html')
 
 
 @app.route("/home", methods=['GET', 'POST'])
 def home(): 
-  return render_template('index.html')
-# Other routes
+    return render_template('index.html')
+
 @app.route('/meals')
-def meals():
-    # Handle Meals page logic here
-    # You can return a rendered template or a response
-
-    #Exammple: Render a template
-    return render_template('meals.html')
-
+def get_meals():
+    meals = list(db.Meals.find())
+    comments = list(db.comment.find())
+    return render_template('meals.html', meal=meals, comment=comments)
 
 
 @app.route("/add", methods=["POST", "GET"])
 def add():
     if request.method == "POST":
-        # Process the form data when the request method is POST
-        # Add the recipe to the user's favorites or perform any necessary operations
-        # based on the submitted data
-        
-        # Example: Access the form data
         title = request.form.get("title")
         description = request.form.get("description")
         ingredients = request.form.get("ingredients")
         instructions = request.form.get("instructions")
         
-        # Process the recipe_name data as needed
+        meals = {"title": title, "description": description, "ingredients": ingredients, "instructions": instructions}
+        db.recipe.insert_one(meals)
         
-        # Example: Add the recipe to the user's favorites in the database
-        # add_recipe_to_favorites(recipe_name)
-        drinks = {"title": title, "description": description, "ingredients": ingredients, "instructions": instructions}
-        db.recipe.insert_one(drinks)
-        # Redirect to a different page after processing the form data
-        return render_template("drinks.html", recipe=drinks)
-    drinks = db.recipe.find() 
+        return render_template("drinks.html", recipe=meals)
     
-    # If the request method is GET or not a POST request
-    # Render the add.html template for the user to view the form
-    return render_template("add.html" )
+    drinks = db.recipe.find()
+    return render_template("add.html")
 
 
 @app.route("/added", methods=["POST", "GET"])
 def added():
     if request.method == "POST":
-        # Process the form data when the request method is POST
-        # Add the recipe to the user's favorites or perform any necessary operations
-        # based on the submitted data
-        
-        # Example: Access the form data
         title = request.form.get("title")
         description = request.form.get("description")
         ingredients = request.form.get("ingredients")
         instructions = request.form.get("instructions")
         
-        # Process the recipe_name data as needed
-        
-        # Example: Add the recipe to the user's favorites in the database
-        # add_recipe_to_favorites(recipe_name)"image": image,
-        Meals = {"title": title, "description": description, "ingredients": ingredients, "instructions": instructions, }
+        Meals = {"title": title, "description": description, "ingredients": ingredients, "instructions": instructions}
         db.Meals.insert_one(Meals)
-        meals = db.Meals.find() 
-        print(meals)
+        meals = db.Meals.find()
       
-        # Redirect to a different page after processing the form data
         return render_template("meals.html", meal=meals)
     
-    # If the request method is GET or not a POST request
-    # Render the add.html template for the user to view the form
     return render_template("added.html")
 
 @app.route("/added2", methods=["POST", "GET"])
@@ -127,30 +98,17 @@ def added2():
 @app.route("/added22", methods=["POST", "GET"])
 def added22():
     if request.method == "POST":
-        # Process the form data when the request method is POST
-        # Add the recipe to the user's favorites or perform any necessary operations
-        # based on the submitted data
-        
-        # Example: Access the form data
         title = request.form.get("title")
         description = request.form.get("description")
         ingredients = request.form.get("ingredients")
         instructions = request.form.get("instructions")
         
-        # Process the recipe_name data as needed
-        
-        # Example: Add the recipe to the user's favorites in the database
-        # add_recipe_to_favorites(recipe_name)
     Dessert = {"title": title, "description": description, "ingredients": ingredients, "instructions": instructions}
     db.Dessert.insert_one(Dessert)
-    dessert = db.Dessert.find() 
-        # Redirect to a different page after processing the form data
+    dessert = db.Dessert.find()
     return render_template("dessert.html", dessert=dessert)
     
-    # If the request method is GET or not a POST request
-    # Render the add.html template for the user to view the form
     return render_template("added2.html")
-
 
 
 @app.route('/drinks')
@@ -158,68 +116,43 @@ def get_drinks():
     drinks = db.recipe.find()
     return render_template('drinks.html', recipe=drinks)
 
-@app.route('/meals')
-def get_meals():
-    meals = db.Meals.find()  # Assuming 'Meals' is the collection name in your MongoDB
-    return render_template('meals.html', meal=meals)
-
-
-# @app.route('/dessert')
-# def get_dessert():
-#    dessert = db.Dessert.find()  # Assuming 'Meals' is the collection name in your MongoDB
-#    return render_template('dessert.html', dessert=dessert)
-
-
-
 @app.route('/strawberry')
 def strawberry():
-    # Handle Drinks page logic here
-    # You can return a rendered template or a response
-
-    # Example: Render a template
     return render_template('strawberry.html')
 
 
 @app.route('/dessert')
 def dessert():
     dessert = db.Dessert.find() 
-    # Handle Dessert page logic here
-    # You can return a rendered template or a response
-
-    # Example: Render a template
     return render_template('dessert.html', dessert=dessert)
 
 @app.route('/success')
 def success():
-    # Handle success page logic here
-    # You can return a rendered template or a response
-
-    # Example: Render a template
     return render_template('success.html')
 
 @app.route('/delete_meals', methods=['POST'])
 def delete_meals():
     if request.method == "POST":
-     delete_id = request.form.get("delete")
-     db.Meals.delete_one({'_id': ObjectId(delete_id)})
-     meals = db.Meals.find()
+        delete_id = request.form.get("delete")
+        db.Meals.delete_one({'_id': ObjectId(delete_id)})
+        meals = db.Meals.find()
     return render_template('meals.html', meal=meals)
     
 @app.route('/delete_dessert', methods=['POST'])
 def delete_dessert():
     if request.method == "POST":
-     delete_id = request.form.get("delete")
-     db.Dessert.delete_one({'_id': ObjectId(delete_id)})
-     dessert = db.Dessert.find()
+        delete_id = request.form.get("delete")
+        db.Dessert.delete_one({'_id': ObjectId(delete_id)})
+        dessert = db.Dessert.find()
     return render_template('dessert.html', dessert=dessert)
 
 @app.route('/delete_drinks', methods=['POST'])
 def delete_drinks():
     if request.method == "POST":
-     delete_id = request.form.get("delete")
-     db.Dessert.delete_one({'_id': ObjectId(delete_id)})
+        delete_id = request.form.get("delete")
+        db.Dessert.delete_one({'_id': ObjectId(delete_id)})
     recipes = db.Dessert.find()
-    return render_template('drinks.html',drinks=recipes )
+    return render_template('drinks.html',drinks=recipes)
 
 @app.route('/edit_meals', methods=['POST'])
 def edit_meals():
@@ -230,128 +163,37 @@ def edit_meals():
 @app.route('/edit2', methods=['POST'])
 def edit_meals2():
     if request.method == "POST":
-     id = request.form.get("id")
-     title = request.form.get("title")
-     ingredients = request.form.get("ingredients")
-     instructions = request.form.get("instructions")
+        id = request.form.get("id")
+        title = request.form.get("title")
+        ingredients = request.form.get("ingredients")
+        instructions = request.form.get("instructions")
      
-     db.Meals.update_one( { "_id":  ObjectId(id)}, { '$set': { "title": title, "ingredients":ingredients, "instructions":instructions} } ) 
-     meals = db.Meals.find()
-     
-     return render_template('meals.html', meal=meals)
-
-# Dummy data for meals and comments
-meals = [
-    {
-        "_id": 1,
-        "title": "Spaghetti",
-        "description": "",
-        "ingredients": [""],
-        "instructions": "",
-        "comments": [
-            {"author": "Jane", "text": "Delicious recipe!"},
-            {"author": "John", "text": "I'm going to try this tonight."},
-        ]
-    }
-]
-
-@app.route('/add_comment/<int:meal_id>', methods=['POST'])
-def add_comment(meal_id):
-    data = request.json
-    author = data.get('author')
-    text = data.get('text')
-    if author and text:
-        for meal in meals:
-            if meal['_id'] == meal_id:
-                meal['comments'].append({"author": author, "text": text})
-                return jsonify({"message": "Comment added successfully"}), 200
-        return jsonify({"error": "Meal not found"}), 404
-    else:
-        return jsonify({"error": "Author and text are required fields"}), 400
-
-@app.route('/edit_comment/<int:meal_id>/<int:comment_id>', methods=['PUT'])
-def edit_comment(meal_id, comment_id):
-    data = request.json
-    text = data.get('text')
-    if text:
-        for meal in meals:
-            if meal['_id'] == meal_id:
-                comments = meal['comments']
-                if comment_id < len(comments):
-                    comments[comment_id]['text'] = text
-                    return jsonify({"message": "Comment edited successfully"}), 200
-                else:
-                    return jsonify({"error": "Comment not found"}), 404
-        return jsonify({"error": "Meal not found"}), 404
-    else:
-        return jsonify({"error": "Text is required"}), 400
-
-@app.route('/reply_comment/<int:meal_id>/<int:comment_id>', methods=['POST'])
-def reply_comment(meal_id, comment_id):
-    data = request.json
-    author = data.get('author')
-    text = data.get('text')
-    if author and text:
-        for meal in meals:
-            if meal['_id'] == meal_id:
-                comments = meal['comments']
-                if comment_id < len(comments):
-                    comments[comment_id].setdefault('replies', []).append({"author": author, "text": text})
-                    return jsonify({"message": "Reply added successfully"}), 200
-                else:
-                    return jsonify({"error": "Comment not found"}), 404
-        return jsonify({"error": "Meal not found"}), 404
-    else:
-        return jsonify({"error": "Author and text are required fields"}), 400
-
-
-
-@app.route('/meals', methods=['POST'])
-def edit_add():
-    if request.method == "POST":
-        id = request.form["id"]
-        title = request.form["title"]
-        Ingredients = request.form["Ingredients"]
-        Instructions = request.form["Instructions"]
-
-        return render_template('add.html', id=id,name=title, Ingredients=Ingredients, Instructions=Instructions)
-
-@app.route('/add', methods=['POST'])
-def edit1_meals():
-    if request.method == "POST":
-        id = request.form["id"]
-        title = request.form["title"]
-        Ingredients = request.form["Ingredients"]
-        Instructions = request.form["Instructions"]
-        db.Meals.update_one( { "_id":  ObjectId(id)}, { '$set': { "title": title, "Ingredients":Ingredients, "Instructions":Instructions} } ) 
-        meals = []
-
-        for i in db.Meals.find():
-            meals.append(i)
-            
-    return render_template('add.html', meal=meals)
-    
-@app.route('/comment', methods=['POST'])
-def comment():
-    if request.method == "POST":
-        comment = request.form["comment"]
-        id = request.form["id"]
-        comm = {"comment": comment, "item_id": id}
-        db.comment.insert_one(comm)
-        
+        db.Meals.update_one({"_id": ObjectId(id)}, {'$set': {"title": title, "ingredients": ingredients, "instructions": instructions}})
         meals = db.Meals.find()
-        comments = db.comment.find()
-        print(meals)
-            
-        return render_template('meals.html', meal=meals, comment=comments, id=id)
+     
+        return render_template('meals.html', meal=meals)
+
+@app.route('/add_comment/<meal_id>', methods=['POST'])
+def add_comment(meal_id):
+    comment = request.form["comment"]
+    comm = {"comment": comment, "item_id": ObjectId(meal_id)}
+    db.comment.insert_one(comm)
     
-    @app.route('/delete_comment', methods=['POST'])
-    def delete_comment():
-     if request.method == "POST":
-      delete_id = request.form.get("delete")
-     db.comment.delete_one({'_id': ObjectId(delete_id)})
-     delete_comments= db.comment.find()
-    return render_template('meals.html', delete_comment=comments)
+    print(f"Comment added to meal ID: {meal_id}")
+
+    meals = list(db.Meals.find())
+    comments = list(db.comment.find())
+    return render_template('meals.html', meal=meals, comment=comments)
+
+    
+@app.route('/delete_comment', methods=['POST'])
+def delete_comment():
+    if request.method == "POST":
+        delete_id = request.form.get("delete")
+        db.comment.delete_one({'_id': ObjectId(delete_id)})
+    comments = db.comment.find()
+    meals = db.Meals.find()
+    return render_template('meals.html', meal=meals, comment=comments)
 
 
 @app.route('/edit_com', methods=['POST'])
@@ -361,6 +203,5 @@ def edit_com():
         return render_template('edit_com.html', id=id)
 
 
-  
 if __name__ == '__main__':
     app.run(debug=True)
