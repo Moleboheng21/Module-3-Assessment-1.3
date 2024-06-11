@@ -154,21 +154,21 @@ def delete_drinks():
     recipes = db.Dessert.find()
     return render_template('drinks.html',drinks=recipes)
 
-@app.route('/edit_meals', methods=['POST'])
+@app.route('/edit_meals/<meal_id>', methods=['POST'])
 def edit_meals():
     if request.method == "POST":
         id = request.form.get("edit")
-        return render_template('editmeal.html', id=id)
+        return render_template('edit_meal.html', id=id)
 
-@app.route('/edit2', methods=['POST'])
-def edit_meals2():
+@app.route('/edit2/<meal_id>', methods=['POST'])
+def edit_meal():
     if request.method == "POST":
-        id = request.form.get("id")
+        description = request.form.get("description")
         title = request.form.get("title")
         ingredients = request.form.get("ingredients")
         instructions = request.form.get("instructions")
      
-        db.Meals.update_one({"_id": ObjectId(id)}, {'$set': {"title": title, "ingredients": ingredients, "instructions": instructions}})
+        db.Meals.update_one({"_id": ObjectId("_id")}, {'$set': {"title": title, "ingredients": ingredients, "description":description, "instructions":instructions }})
         meals = db.Meals.find()
      
         return render_template('meals.html', meal=meals)
@@ -196,11 +196,47 @@ def delete_comment():
     return render_template('meals.html', meal=meals, comment=comments)
 
 
-@app.route('/edit_com', methods=['POST'])
-def edit_com():
-    if request.method == "POST":
-        id = request.form.get("edit")
-        return render_template('edit_com.html', id=id)
+@app.route('/edit_comment/<comment_id>', methods=['GET', 'POST'])
+def edit_comment(comment_id):
+    if request.method == 'POST':
+        comment_text = request.form['comment-text']
+        db.comments.update_one(
+            
+            {'_id': ObjectId(comment_id)},
+            {'$set': {'text': comment_text}}
+        )
+        print("com id", comment_id)
+        print("com text", comment_text)
+        
+        comments = db.comment.find()
+        meals = db.Meals.find()
+        db.session.commit()
+        return redirect(url_for('get_meals',meal=meals, comment=comments))  # Replace 'show_post' with the appropriate route
+
+    # Fetch the comment data from the database
+    comment = db.comments.find_one({'_id': ObjectId(comment_id)})
+    return render_template('meals.html', meal=meals,  comment=comment)
+
+# @app.route('/edit_comment/<comment_id>', methods=['GET', 'POST'])
+# def edit_comment(comment_id):
+#     if request.method == 'POST':
+#         comment_text = request.form['comment_text']
+#         db.comment.update_one(
+#             {'_id': ObjectId(comment_id)},
+#             {'$set': {'comment': comment_text}}  # Corrected the field name to 'comment'
+#         )
+#         print("com id", comment_id)
+#         print("com text", comment_text)
+        
+#         # Fetch all comments and meals after editing
+#         comments = db.comment.find()
+#         meals = db.Meals.find()
+#         return redirect(url_for('get_meals'))  # Redirect to the meals page after editing
+
+    # Fetch the comment data from the database
+    comment = db.comment.find_one({'_id': ObjectId(comment_id)})
+    return render_template('edit_comment.html', comment=comment)  # Create a new template for editing comments
+
 
 
 if __name__ == '__main__':
