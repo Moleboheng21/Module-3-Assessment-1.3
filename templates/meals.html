@@ -60,10 +60,13 @@
         </div>
       </form>
 
-      <form action="/edit_meals/{{ meal._id }}" method="post" class="mt-2">
-        <input type="hidden" name="id" id="id" value="{{ meal._id }}">
+      <form action="/edit_meals" method="post" class="mt-2">
+        <input type="hidden" name="edit" id="edit" value="{{ meal._id }}">
         <button type="submit" class="btn btn-secondary">Edit</button>
       </form>
+
+
+
 
       <form action="/delete_meals" method="post" class="mt-2">
         <input type="hidden" name="id" id="id" value="{{ meal._id }}">
@@ -86,7 +89,7 @@
         <form class="edit-comment-form" data-comment-id="{{ comment._id }}">
           <div class="form-group">
               <label for="comment-text">Edit Comment</label>
-              <textarea class="form-control comment-text" id="comment-text" rows="1">{{ comment.comment }}</textarea>
+              <textarea class="form-control comment-text" id="comment-text" rows="1">{{ comment.text }}</textarea>
           </div>
           <button type="button" class="btn btn-primary save-comment-btn" >Save Changes</button>
           <button type="button" class="btn btn-secondary cancel-edit-btn">Cancel</button>

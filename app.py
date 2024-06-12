@@ -154,24 +154,24 @@ def delete_drinks():
     recipes = db.Dessert.find()
     return render_template('drinks.html',drinks=recipes)
 
-@app.route('/edit_meals/<meal_id>', methods=['POST'])
+@app.route('/edit_meals', methods=['POST'])
 def edit_meals():
     if request.method == "POST":
         id = request.form.get("edit")
-        return render_template('edit_meal.html', id=id)
-
-@app.route('/edit2/<meal_id>', methods=['POST'])
-def edit_meal():
+        return render_template('editmeal.html', id=id)
+    
+@app.route('/edit2', methods=['POST'])
+def edit_meal2():
     if request.method == "POST":
-        description = request.form.get("description")
-        title = request.form.get("title")
-        ingredients = request.form.get("ingredients")
-        instructions = request.form.get("instructions")
+     id = request.form.get("id")
+     title = request.form.get("title")
+     ingredients = request.form.get("ingredients")
+     instructions = request.form.get("instructions")
      
-        db.Meals.update_one({"_id": ObjectId("_id")}, {'$set': {"title": title, "ingredients": ingredients, "description":description, "instructions":instructions }})
-        meals = db.Meals.find()
+     db.Meals.update_one( { "_id":  ObjectId(id)}, { '$set': { "title": title, "ingredients":ingredients, "instructions":instructions} } ) 
+     meals = db.Meals.find()
      
-        return render_template('meals.html', meal=meals)
+     return render_template('meals.html', meal=meals)
 
 @app.route('/add_comment/<meal_id>', methods=['POST'])
 def add_comment(meal_id):
