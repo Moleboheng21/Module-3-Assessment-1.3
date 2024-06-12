@@ -165,10 +165,11 @@ def edit_meal2():
     if request.method == "POST":
      id = request.form.get("id")
      title = request.form.get("title")
+     description = request.form.get("description")
      ingredients = request.form.get("ingredients")
      instructions = request.form.get("instructions")
      
-     db.Meals.update_one( { "_id":  ObjectId(id)}, { '$set': { "title": title, "ingredients":ingredients, "instructions":instructions} } ) 
+     db.Meals.update_one( { "_id":  ObjectId(id)}, { '$set': { "title": title, "ingredients":ingredients,"description":description, "instructions":instructions} } ) 
      meals = db.Meals.find()
      
      return render_template('meals.html', meal=meals)
