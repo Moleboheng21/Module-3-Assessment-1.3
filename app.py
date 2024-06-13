@@ -212,7 +212,7 @@ def edit_comment(comment_id):
         comments = db.comment.find()
         meals = db.Meals.find()
         db.session.commit()
-        return redirect(url_for('get_meals',meal=meals, comment=comments))  # Replace 'show_post' with the appropriate route
+        return render_template('get_meals',meal=meals, comment=comments)  # Replace 'show_post' with the appropriate route
 
     # Fetch the comment data from the database
     comment = db.comments.find_one({'_id': ObjectId(comment_id)})

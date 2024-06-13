@@ -150,7 +150,7 @@ input[type-checkbox]:checked + label:before{
     padding-left: 10px;
 }
 .body-meals{
-    background-image: url("/static/images/background-02-port.png");;
+    background-image: url("/static/images/happy\ things.jpeg");;
 }
 
 /*======= RECIPE PAGE ==========*/
@@ -276,7 +276,7 @@ ul.navbar {
     margin: 20px auto;
     border: 1px solid #111010;
     border-radius: 5px;
-  
+    background-color: #fffcfc;
     
    
   }
