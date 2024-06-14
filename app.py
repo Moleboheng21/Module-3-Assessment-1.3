@@ -65,12 +65,13 @@ def add():
         ingredients = request.form.get("ingredients")
         instructions = request.form.get("instructions")
         
-        meals = {"title": title, "description": description, "ingredients": ingredients, "instructions": instructions}
-        db.recipe.insert_one(meals)
+        recipe = {"title": title, "description": description, "ingredients": ingredients, "instructions": instructions}
+        db.recipe.insert_one(recipe)
         
-        return render_template("drinks.html", recipe=meals)
+        recipe = db.recipe.find()
+        return render_template("drinks.html", recipe=recipe)
     
-    drinks = db.recipe.find()
+    # drinks = db.recipe.find()
     return render_template("add.html")
 
 
@@ -136,6 +137,7 @@ def delete_meals():
         delete_id = request.form.get("delete")
         db.Meals.delete_one({'_id': ObjectId(delete_id)})
         meals = db.Meals.find()
+        print("dr", meals)
     return render_template('meals.html', meal=meals)
     
 @app.route('/delete_dessert', methods=['POST'])
@@ -150,9 +152,10 @@ def delete_dessert():
 def delete_drinks():
     if request.method == "POST":
         delete_id = request.form.get("delete")
-        db.Dessert.delete_one({'_id': ObjectId(delete_id)})
-    recipes = db.Dessert.find()
-    return render_template('drinks.html',drinks=recipes)
+        db.recipe.delete_one({'_id': ObjectId(delete_id)})
+    recipe = db.recipe.find()
+    print("dr", recipe)
+    return render_template('drinks.html',recipe=recipe)
 
 @app.route('/edit_meals', methods=['POST'])
 def edit_meals():
@@ -186,7 +189,7 @@ def add_comment(meal_id):
     comments = list(db.comment.find())
     return render_template('meals.html', meal=meals, comment=comments)
 
-    
+
 @app.route('/delete_comment', methods=['POST'])
 def delete_comment():
     if request.method == "POST":
