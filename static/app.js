@@ -12,7 +12,10 @@ function goToLandingPage1( ) {
     // Replace the URL "/landing-page" with the actual URL or route of the landing page
    window.location.href = "http://127.0.0.1:5000/added2";
 }
-
+function goToLandingPage3( ) {
+  // Replace the URL "/landing-page" with the actual URL or route of the landing page
+ window.location.href = "http://127.0.0.1:5505/templates/review2.0.html";
+}
 
 document.addEventListener("DOMContentLoaded", function() {
     fetchNewsfeed();

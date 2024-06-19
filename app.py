@@ -1,6 +1,7 @@
 from bson import ObjectId
 from flask import Flask, request, render_template, redirect, url_for
 from flask_pymongo import PyMongo
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__, static_url_path='/static')
 app.config["MONGO_URI"] = "mongodb://localhost:27017/customer"
@@ -82,8 +83,9 @@ def added():
         description = request.form.get("description")
         ingredients = request.form.get("ingredients")
         instructions = request.form.get("instructions")
+        likes = request.form.get("likes")
         
-        Meals = {"title": title, "description": description, "ingredients": ingredients, "instructions": instructions}
+        Meals = {"title": title, "description": description, "ingredients": ingredients, "instructions": instructions, "likes": likes}
         db.Meals.insert_one(Meals)
         meals = db.Meals.find()
       
@@ -176,6 +178,92 @@ def edit_meal2():
      meals = db.Meals.find()
      
      return render_template('meals.html', meal=meals)
+ 
+ 
+ 
+
+@app.route('/review20_form')
+def review_form():
+    return render_template('review.html')
+    
+@app.route("/review_form", methods=["POST", "GET"])
+def review():
+     if request.method == "POST":
+        title = request.form.get("title")
+        comment = request.form.get("comment")
+        rating = request.form.get("rating")
+     
+        print("T1", title)
+        print("T2", comment)
+        print("T3", rating)
+        Reviews = {"title": title, "comment": comment, "rating": rating,}
+        
+        db.Reviews.insert_one(Reviews)
+        allreviews = db.Reviews.find()
+        
+        print("T3", allreviews)
+        return render_template("review2.0.html", allreviews=allreviews)
+    
+     
+    
+   
+       
+
+
+
+
+
+ 
+ 
+
+ 
+
+
+meals = [
+    {
+        "id": 1,
+        "title": "First meal",
+        "likes": 0
+    },
+    {
+        "id": 2,
+        "title": "Second meal",
+        "likes": 0
+    },
+    {
+        "id": 3,
+        "title": "Third meal",
+        "likes": 0
+    }
+]
+
+@app.route('/like_meals', methods=['POST'])
+def like_meals():
+    try:
+        like_id = request.form.get('like')
+        if like_id is None:
+            return jsonify({'error': 'No meal ID provided'}), 400
+
+        meal_id = ObjectId(like_id)
+
+        db.meals.update_one(
+            {'_id': meal_id},
+            {'$inc': {'likes': 1}}
+        )
+
+        meal = db.meals.find_one({'_id': meal_id})
+        return jsonify({'likes': meal['likes']})
+
+    except Exception as e:
+        print(f"Error liking meal: {e}")
+        return jsonify({'error': str(e)}), 500
+    
+    
+    
+@app.route('/meals')
+def meals_page():
+    meals = list(db.meals.find())
+    return render_template('meals.html', meals=meals)
 
 @app.route('/add_comment/<meal_id>', methods=['POST'])
 def add_comment(meal_id):
@@ -190,6 +278,19 @@ def add_comment(meal_id):
     return render_template('meals.html', meal=meals, comment=comments)
 
 
+# @app.route('/review-form"', methods=['POST'])
+# def review_form (meal_id):
+#     meal = request.form["review"]
+#     comm = {"review": meal, "item_id": ObjectId(meal_id)}
+#     db.review.insert_one(review_form)
+    
+#     print(f"Comment added to meal ID: {meal_id}")
+
+#     meals = list(db.Meals.find())
+#     comments = list(db.comment.find())
+#     return render_template('meals.html', meal=meals, comment=comments)
+
+
 @app.route('/delete_comment', methods=['POST'])
 def delete_comment():
     if request.method == "POST":
@@ -199,6 +300,20 @@ def delete_comment():
     meals = db.Meals.find()
     return render_template('meals.html', meal=meals, comment=comments)
 
+@app.route("/meals")
+def meals():
+    comments = db.comment.find()
+    meals = db.Meals.find()
+    return render_template("meals.html", meal=meals, comment=comments)
+
+@app.route("/like/<int:post_id>", methods=["POST"])
+def like_post(post_id):
+    post = next((p for p in posts if p["id"] == post_id), None)
+    if post:
+        post["likes"] += 1
+        return jsonify({"likes": post["likes"]})
+    else:
+        return jsonify({"error": "Post not found"}), 404
 
 @app.route('/edit_comment/<comment_id>', methods=['GET', 'POST'])
 def edit_comment(comment_id):
@@ -221,6 +336,10 @@ def edit_comment(comment_id):
     comment = db.comments.find_one({'_id': ObjectId(comment_id)})
     return render_template('meals.html', meal=meals,  comment=comment)
 
+
+
+
+
 # @app.route('/edit_comment/<comment_id>', methods=['GET', 'POST'])
 # def edit_comment(comment_id):
 #     if request.method == 'POST':
@@ -240,6 +359,7 @@ def edit_comment(comment_id):
     # Fetch the comment data from the database
     comment = db.comment.find_one({'_id': ObjectId(comment_id)})
     return render_template('edit_comment.html', comment=comment)  # Create a new template for editing comments
+
 
 
 

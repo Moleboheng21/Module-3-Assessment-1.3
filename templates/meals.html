@@ -34,17 +34,31 @@
     <div id="newsfeed-container">
       <!-- Recipe news will be displayed here -->
     </div>
+    
 
     {% for meal in meal %}
+   
     <div class="post mb-4 p-4 border rounded">
       <div class="post-header">
+        
         <ul>
+          <style>
+            body {background-color: powderblue;}
+            h1   {color: blue;}
+            p    {color: red;}
+          </style>
+          <center><a href="/review20_form" type="submit" class="btn btn-success">Reviews</a></center>
           <li>{{ meal.title }}</li>
-          <li><strong>Description:</strong> {{ meal.description }}</li>
-          <li><strong>Ingredients:</strong> {{ meal.ingredients }}</li>
-          <li><strong>Instructions:</strong> {{ meal.instructions }}</li>
-      
+         <h5> <li><strong>title:</strong></h5> {{ meal.title }}</li>
+         <h5><li><strong>Description:</strong></h5> {{ meal.description }}</li>
+          <h5><li><strong>Ingredients:</strong></h5> {{ meal.ingredients }}</li>
+          <h5><li><strong>Instructions:</strong></h5> {{ meal.instructions }}</li>
+          <strong>:</strong> {{ meal.likes }}
+          <button type="submit" class="btn btn-danger btn-sm", margin-left: ><i class="fa-regular fa-heart fa-beat-fade"></i></button>
+          <button type="submit" class="btn btn-danger btn-sm", margin-left: ><i class="fa-regular fa-thumbs-down fa-beat-fade"></i></button>
         </ul>
+
+        
        
      
       </div>
@@ -52,7 +66,7 @@
       {% if meal.image_url %}
       <img src="{{ meal.image_url }}" alt="{{ meal.title }}" class="img-fluid">
       {% endif %}
-
+    
       <form action="/add_comment/{{ meal._id }}" method="post" class="mt-3">
         <div class="input-group">
           <input type="text" name="comment" id="comment" class="form-control" placeholder="Add a comment...">
@@ -60,9 +74,11 @@
         </div>
       </form>
 
+      
+
       <form action="/edit_meals" method="post" class="mt-2">
         <input type="hidden" name="edit" id="edit" value="{{ meal._id }}">
-        <button type="submit" class="btn btn-secondary">Edit</button>
+        <button type="submit" class="btn btn-warning">Edit</button>
       </form>
 
 
@@ -73,15 +89,26 @@
         <button type="submit" class="btn btn-danger">Delete</button>
       </form> 
 
+     
+
       <div class="mt-3">
         {% for comment in comment %}
         {% if meal._id == comment.item_id %}
         <d class="comment p-2 mb-2 border rounded">
           <form action="/delete_comment" method="post" class="d-flex justify-content-between align-items-center">
             <span>{{ comment.comment }}</span>
+            {% for post in posts %}
+            <div>
+            <h2>{{ post.title }}</h2>
+            <p>Likes: <span id="likes-{{ post.id }}">{{ post.likes }}</span></p>
+            <button onclick="likePost({{ post.id }})">Like</button>
+            <button onclick="unlikePost({{ post.id }})">Unlike</button>
+        </div>
+        {% endfor %}
             <input type="hidden" name="delete" value="{{ comment._id }}">
             <button type="submit" class="btn btn-danger btn-sm">Delete comment</button>
-          </form> <br> 
+          </form> <br>
+         
           
           <form action="/edit_comment" method="post" class="d-flex justify-content-between align-items-center">
             <input type="hidden" name="edit" id="edit" value="{{ comment._id }}">
@@ -92,7 +119,23 @@
 
         <form class="edit-comment-form" data-comment-id="{{ comment._id }}">
           <div class="form-group">
-              
+            
+            <title>Like and Unlike</title>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        </head>
+        <body>
+          
+            {% for post in posts %}
+            <div>
+                <h2>{{ post.title }}</h2>
+                <p>Likes: <span id="likes-{{ post.id }}">{{ post.likes }}</span></p>
+                <button onclick="likePost({{ post.id }})">Like</button>
+                <button onclick="unlikePost({{ post.id }})">Unlike</button>
+            </div>
+            {% endfor %}
+        
+        </body>
+        </html>
              
           </div>
           
@@ -165,6 +208,40 @@
           });
       });
   });
+
+  function likePost(postId) {
+    $.ajax({
+        url: `/like/${postId}`,
+        type: 'POST',
+        success: function(data) {
+            $(`#likes-${postId}`).text(data.likes);
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+}
+
+function unlikePost(postId) {
+    $.ajax({
+        url: `/unlike/${postId}`,
+        type: 'POST',
+        success: function(data) {
+            $(`#likes-${postId}`).text(data.likes);
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+}
+</script>
+</body>
+</html>
+
+</div>
+
+</form>
+
 </script>
 
 </html>
